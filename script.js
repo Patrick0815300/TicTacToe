@@ -1,13 +1,13 @@
 let fields = [
     null,
     null,
-    'circle',
-    null,
-    'cross',
     null,
     null,
     null,
-]
+    null,
+    null,
+    null,
+];
 
 function init() {
     render();
@@ -22,12 +22,13 @@ function render() {
         for (let j = 0; j < 3; j++) {
             const cell = document.createElement('td');
             const index = i * 3 + j;
+            if (!fields[index]) {
+                cell.setAttribute('onclick', `placeMark(${index})`);
+            }
             if (fields[index] === 'circle') {
-                const svg = generateCircleSVG(); // Kreis generieren
-                cell.innerHTML = svg; // SVG-Code in die Zelle einfügen
+                cell.innerHTML = generateCircleSVG();
             } else if (fields[index] === 'cross') {
-                const svg = generateCrossSVG(); // Kreuz generieren
-                cell.innerHTML = svg; // SVG-Code in die Zelle einfügen
+                cell.innerHTML = generateCrossSVG();
             }
             row.appendChild(cell);
         }
@@ -37,6 +38,25 @@ function render() {
     container.innerHTML = '';
     container.appendChild(table);
 }
+
+function placeMark(index) {
+    const container = document.getElementById('container');
+    const cell = container.querySelectorAll('td')[index];
+    const currentPlayer = fields.filter(field => field !== null).length % 2 === 0 ? 'circle' : 'cross';
+
+    if (currentPlayer === 'circle') {
+        fields[index] = 'circle';
+        cell.innerHTML = generateCircleSVG();
+    } else if (currentPlayer === 'cross') {
+        fields[index] = 'cross';
+        cell.innerHTML = generateCrossSVG();
+    }
+
+    cell.removeAttribute('onclick');
+}
+
+init();
+
 
 
 
