@@ -16,7 +16,7 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 120px;
 }
 
 td {
@@ -45,4 +45,19 @@ tr:first-child td {
 
 tr:last-child td {
     border-bottom: none; /* Entfernt die untere Trennlinie für die letzte Zeile */
+}
+
+#btn {
+   display: flex;
+   justify-content: center;
+   margin-top: 100px;
+}
+
+#btn > button {
+    width: 200px;
+    height: 80px;
+    font-size: 24px;
+    font-weight: bold;   
+    cursor: pointer;
+    border-radius: 8px;
 }
